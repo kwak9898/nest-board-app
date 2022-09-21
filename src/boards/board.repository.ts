@@ -43,4 +43,14 @@ export class BoardRepository extends Repository<Board> {
       throw new NotFoundException('존재하는 게시물이 없습니다.');
     }
   }
+
+  // 특정 게시물 상태 업데이트
+  async updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
+    const board = await this.getBoardById(id);
+
+    board.status = status;
+    await this.save(board);
+
+    return board;
+  }
 }

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Board } from './board.entity';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardRepository } from './board.repository';
+import { BoardStatus } from './board-status.enum';
 
 @Injectable()
 export class BoardsService {
@@ -24,5 +25,10 @@ export class BoardsService {
   // 특정 게시물 삭제
   deleteBoard(id: number): Promise<void> {
     return this.boardRepository.deleteBoard(id);
+  }
+
+  // 특정 게시물 상태 업데이트
+  updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
+    return this.boardRepository.updateBoardStatus(id, status);
   }
 }
