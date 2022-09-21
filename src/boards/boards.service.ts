@@ -31,4 +31,9 @@ export class BoardsService {
   updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
     return this.boardRepository.updateBoardStatus(id, status);
   }
+
+  // 게시물 전체 조회
+  getAllBoards(): Promise<Board[]> {
+    return this.boardRepository.getAllBoards();
+  }
 }

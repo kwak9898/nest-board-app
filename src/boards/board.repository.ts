@@ -53,4 +53,9 @@ export class BoardRepository extends Repository<Board> {
 
     return board;
   }
+
+  // 게시물 전체 조회
+  async getAllBoards(): Promise<Board[]> {
+    return await this.find();
+  }
 }
