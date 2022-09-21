@@ -2,6 +2,7 @@ import {
   ConflictException,
   Injectable,
   InternalServerErrorException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { User } from './user.entity';
@@ -30,6 +31,18 @@ export class UserRepository extends Repository<User> {
       } else {
         throw new InternalServerErrorException();
       }
+    }
+  }
+
+  // 로그인
+  async login(authCredentialsDto: AuthCredentialsDto): Promise<string> {
+    const { username, password } = authCredentialsDto;
+    const user = await this.findOne({ where: { username } });
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      return '로그인 성공';
+    } else {
+      throw new UnauthorizedException('로그인 실패');
     }
   }
 }

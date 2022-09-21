@@ -11,7 +11,13 @@ export class AuthService {
     private userRepository: UserRepository,
   ) {}
 
+  // 회원가입
   signUp(authCredentialsDto: AuthCredentialsDto): Promise<User> {
     return this.userRepository.createUser(authCredentialsDto);
+  }
+
+  // 로그인
+  signIn(authCredentialsDto: AuthCredentialsDto): Promise<string> {
+    return this.userRepository.login(authCredentialsDto);
   }
 }
