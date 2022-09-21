@@ -10,6 +10,7 @@ export class BoardsService {
     private boardRepository: BoardRepository,
   ) {}
 
+  // 특정 게시물 찾기
   async getBoardById(id: number): Promise<Board> {
     const found = await this.boardRepository.findOne({ where: { id } });
 
