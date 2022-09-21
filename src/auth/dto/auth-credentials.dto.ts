@@ -9,6 +9,7 @@ export class AuthCredentialsDto {
   @IsString()
   @MinLength(4)
   @MaxLength(20)
+  // 영어랑 숫자만 가능한 유효성 체크
   @Matches(/^[a-zA-z0-9]*$/)
   password: string;
 }
