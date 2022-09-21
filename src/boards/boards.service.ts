@@ -34,7 +34,7 @@ export class BoardsService {
   }
 
   // 게시물 전체 조회
-  getAllBoards(): Promise<Board[]> {
-    return this.boardRepository.getAllBoards();
+  getAllBoards(user: User): Promise<Board[]> {
+    return this.boardRepository.getAllBoards(user);
   }
 }
