@@ -10,6 +10,6 @@ export class AuthCredentialsDto {
   @MinLength(4)
   @MaxLength(20)
   // 영어랑 숫자만 가능한 유효성 체크
-  @Matches(/^[a-zA-Z0-9]*$/)
+  @Matches(/^[a-zA-Z0-9]*$/, { message: '영어와 숫자만 가능합니다.' })
   password: string;
 }
