@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   // 로그인
-  signIn(authCredentialsDto: AuthCredentialsDto): Promise<string> {
+  signIn(authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken }> {
     return this.userRepository.login(authCredentialsDto);
   }
 }
