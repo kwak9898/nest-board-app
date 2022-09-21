@@ -10,6 +10,7 @@ export class BoardRepository extends Repository<Board> {
     super(Board, dataSource.createEntityManager());
   }
 
+  // 특정 게시물 조회
   async getBoardById(id: number): Promise<Board> {
     const found = await this.findOne({ where: { id } });
 
@@ -20,6 +21,7 @@ export class BoardRepository extends Repository<Board> {
     return found;
   }
 
+  // 게시물 생성
   async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
     const { title, description } = createBoardDto;
 
@@ -31,5 +33,14 @@ export class BoardRepository extends Repository<Board> {
 
     await this.save(board);
     return board;
+  }
+
+  // 특정 게시물 삭제
+  async deleteBoard(id: number): Promise<void> {
+    const result = await this.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException('존재하는 게시물이 없습니다.');
+    }
   }
 }
